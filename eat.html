@@ -189,6 +189,15 @@
             from { opacity: 0; transform: scale(0); }
             to { opacity: 1; transform: scale(1.2); }
         }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.2rem; /* Adjusted for mobile */
+            }
+            .food-result {
+                font-size: 2.5rem;
+            }
+        }
     </style>
 </head>
 
@@ -209,6 +218,7 @@
             <button class="generate-btn" id="generateBtn">✨ 메뉴 추천받기</button>
             <div id="resultContainer">
                 <div class="food-result" id="foodResult">? ? ?</div>
+                <img id="foodImage" style="max-width: 100%; border-radius: 15px; margin-top: 1rem; display: none; box-shadow: 0 5px 15px rgba(0,0,0,0.2);" alt="음식 이미지">
             </div>
         </div>
     </div>
@@ -222,6 +232,7 @@
 
         const generateBtn = document.getElementById('generateBtn');
         const foodResult = document.getElementById('foodResult');
+        const foodImage = document.getElementById('foodImage');
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
 
@@ -241,6 +252,8 @@
 
         generateBtn.addEventListener('click', () => {
             let count = 0;
+            foodImage.style.display = 'none'; // Hide previous image while shuffling
+            
             const interval = setInterval(() => {
                 const randomMenu = menuList[Math.floor(Math.random() * menuList.length)];
                 foodResult.textContent = randomMenu;
@@ -252,6 +265,14 @@
                     foodResult.style.animation = 'none';
                     foodResult.offsetHeight; /* trigger reflow */
                     foodResult.style.animation = 'popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                    
+                    // Fetch and show image
+                    const imageUrl = `https://image.pollinations.ai/prompt/delicious ${finalMenu} food real photo high quality?width=600&height=400&nologo=true&seed=${Math.random()}`;
+                    foodImage.src = imageUrl;
+                    foodImage.onload = () => {
+                        foodImage.style.display = 'block';
+                        foodImage.style.animation = 'fadeInUp 0.5s ease';
+                    };
                 }
             }, 50);
         });
