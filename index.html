@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="로또 번호 추천 - 행운의 번호를 찾아보세요">
+    <title>🍀 로또 번호 추천기</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #06b6d4;
+            --secondary: #14b8a6;
+            --accent: #f97316;
+            --dark-bg: #f0fdfa;
+            --card-bg: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --gradient: linear-gradient(135deg, #06b6d4 0%, #14b8a6 50%, #10b981 100%);
+            --gold: #fbbf24;
+        }
+
+
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 90%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .main-card {
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(6, 182, 212, 0.15);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Noto Sans KR', sans-serif;
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(6, 182, 212, 0.4);
+        }
+
+        .generate-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .generate-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .generate-btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .result-container {
+            margin-top: 2rem;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .lotto-set {
+            background: rgba(6, 182, 212, 0.05);
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(6, 182, 212, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .lotto-set:hover {
+            background: rgba(6, 182, 212, 0.08);
+            border-color: rgba(6, 182, 212, 0.3);
+        }
+
+        .set-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .numbers-wrapper {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .number-ball {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+        }
+
+        .number-ball::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 20%;
+            width: 30%;
+            height: 30%;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+        }
+
+        .number-ball.color-1 {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        }
+
+        .number-ball.color-2 {
+            background: linear-gradient(135deg, #06b6d4, #0891b2);
+        }
+
+        .number-ball.color-3 {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+        }
+
+        .number-ball.color-4 {
+            background: linear-gradient(135deg, #a855f7, #9333ea);
+        }
+
+        .number-ball.color-5 {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .bonus-separator {
+            font-size: 2rem;
+            color: var(--text-secondary);
+            font-weight: 700;
+            animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s backwards;
+        }
+
+
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(99, 102, 241, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 0.3rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            padding: 2rem;
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+
+            .main-card {
+                padding: 2rem;
+            }
+
+            .number-ball {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .history-number {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">🍀 로또 번호 추천기</h1>
+            <p class="subtitle">행운의 번호를 찾아보세요!</p>
+
+        </div>
+
+        <div class="main-card">
+            <button class="generate-btn" id="generateBtn">✨ 행운의 번호 생성하기</button>
+
+            <div class="result-container" id="resultContainer">
+                <div class="empty-state">
+                    <div class="empty-state-icon">🎱</div>
+                    <p>버튼을 눌러 행운의 번호를 받아보세요!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        const generateBtn = document.getElementById('generateBtn');
+        const resultContainer = document.getElementById('resultContainer');
+
+
+        // 로또 번호 생성 함수
+        function generateLottoNumbers() {
+            const numbers = [];
+            while (numbers.length < 6) {
+                const num = Math.floor(Math.random() * 45) + 1;
+                if (!numbers.includes(num)) {
+                    numbers.push(num);
+                }
+            }
+            return numbers.sort((a, b) => a - b);
+        }
+
+        // 보너스 번호 생성 함수
+        function generateBonusNumber(mainNumbers) {
+            let bonus;
+            do {
+                bonus = Math.floor(Math.random() * 45) + 1;
+            } while (mainNumbers.includes(bonus));
+            return bonus;
+        }
+
+        // 번호 색상 결정 함수
+        function getNumberColor(num) {
+            if (num <= 10) return 'color-1';
+            if (num <= 20) return 'color-2';
+            if (num <= 30) return 'color-3';
+            if (num <= 40) return 'color-4';
+            return 'color-5';
+        }
+
+        // 번호 표시 함수 (5세트)
+        function displayNumbers(lottoSets) {
+            resultContainer.innerHTML = '';
+
+            lottoSets.forEach((set, setIndex) => {
+                const setContainer = document.createElement('div');
+                setContainer.className = 'lotto-set';
+                setContainer.style.animation = `fadeInUp 0.5s ease ${setIndex * 0.1}s backwards`;
+
+                const label = document.createElement('div');
+                label.className = 'set-label';
+                label.textContent = `${String.fromCharCode(65 + setIndex)}조 추천 번호`;
+                setContainer.appendChild(label);
+
+                const wrapper = document.createElement('div');
+                wrapper.className = 'numbers-wrapper';
+
+                set.numbers.forEach((num, index) => {
+                    const ball = document.createElement('div');
+                    ball.className = `number-ball ${getNumberColor(num)}`;
+                    ball.textContent = num;
+                    ball.style.animationDelay = `${(setIndex * 0.1) + (index * 0.05)}s`;
+                    wrapper.appendChild(ball);
+                });
+
+                const separator = document.createElement('div');
+                separator.className = 'bonus-separator';
+                separator.textContent = '+';
+                wrapper.appendChild(separator);
+
+                const bonusBall = document.createElement('div');
+                bonusBall.className = `number-ball ${getNumberColor(set.bonus)}`;
+                bonusBall.textContent = set.bonus;
+                bonusBall.style.animationDelay = `${(setIndex * 0.1) + 0.3}s`;
+                wrapper.appendChild(bonusBall);
+
+                setContainer.appendChild(wrapper);
+                resultContainer.appendChild(setContainer);
+            });
+        }
+
+        // 버튼 클릭 이벤트
+        generateBtn.addEventListener('click', () => {
+            // 5세트 생성
+            const lottoSets = [];
+            for (let i = 0; i < 5; i++) {
+                const numbers = generateLottoNumbers();
+                const bonus = generateBonusNumber(numbers);
+                lottoSets.push({ numbers, bonus });
+            }
+
+            displayNumbers(lottoSets);
+
+            // 버튼 애니메이션
+            generateBtn.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                generateBtn.style.transform = 'scale(1)';
+            }, 100);
+        });
+    </script>
+</body>
+
+</html>
