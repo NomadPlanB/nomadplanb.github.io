@@ -289,6 +289,77 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4);
         }
+
+        .info-section {
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 10px 40px rgba(249, 115, 22, 0.15);
+            border: 1px solid rgba(249, 115, 22, 0.2);
+        }
+
+        .info-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .info-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .info-content p {
+            margin-bottom: 1rem;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .menu-tag {
+            background: rgba(249, 115, 22, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .footer {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(249, 115, 22, 0.2);
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
     </style>
 </head>
 
@@ -296,8 +367,9 @@
     <div class="container">
         <nav class="nav-menu">
             <a href="index.html" class="nav-item">🍀 로또</a>
-            <a href="food.html" class="nav-item active">🍔 야식 뭐 먹지?</a>
-            <a href="face.html" class="nav-item">🐾 동물상 테스트</a>
+            <a href="food.html" class="nav-item active">🍔 야식</a>
+            <a href="face.html" class="nav-item">🐾 동물상</a>
+            <a href="about.html" class="nav-item">소개</a>
         </nav>
 
         <div class="header">
@@ -314,7 +386,58 @@
             </div>
         </div>
 
-        <div class="contact-section">
+        <div class="info-section">
+            <h2 class="info-title">야식 메뉴 추천기 소개</h2>
+            <div class="info-content">
+                <p>
+                    "오늘 뭐 먹지?" 매일 반복되는 메뉴 선택의 고민을 해결해 드립니다.
+                    저희 야식 메뉴 추천기는 다양한 한식, 중식, 일식, 양식 메뉴 중에서 무작위로 하나를 추천해 드립니다.
+                    결정 장애가 있으신 분들께 딱 맞는 서비스입니다!
+                </p>
+                <p>
+                    추천 버튼을 누르면 룰렛처럼 메뉴가 돌아가다가 최종 메뉴가 선택됩니다.
+                    맛있는 음식 이미지와 함께 제공되어 식욕을 돋우어 드립니다.
+                </p>
+            </div>
+
+            <h3 class="info-title" style="margin-top: 1.5rem;">추천 가능한 메뉴 목록</h3>
+            <div class="menu-grid">
+                <span class="menu-tag">짜장면</span>
+                <span class="menu-tag">짬뽕</span>
+                <span class="menu-tag">탕수육</span>
+                <span class="menu-tag">치킨</span>
+                <span class="menu-tag">피자</span>
+                <span class="menu-tag">삼겹살</span>
+                <span class="menu-tag">초밥</span>
+                <span class="menu-tag">돈까스</span>
+                <span class="menu-tag">김치찌개</span>
+                <span class="menu-tag">된장찌개</span>
+                <span class="menu-tag">제육볶음</span>
+                <span class="menu-tag">냉면</span>
+                <span class="menu-tag">마라탕</span>
+                <span class="menu-tag">쌀국수</span>
+                <span class="menu-tag">햄버거</span>
+                <span class="menu-tag">떡볶이</span>
+                <span class="menu-tag">샌드위치</span>
+                <span class="menu-tag">샐러드</span>
+                <span class="menu-tag">파스타</span>
+                <span class="menu-tag">스테이크</span>
+                <span class="menu-tag">회</span>
+                <span class="menu-tag">족발</span>
+                <span class="menu-tag">보쌈</span>
+            </div>
+
+            <h3 class="info-title" style="margin-top: 1.5rem;">이용 안내</h3>
+            <div class="info-content">
+                <p>
+                    본 서비스는 무료이며 회원가입이 필요 없습니다.
+                    추천 결과가 마음에 들지 않으면 버튼을 다시 눌러 새로운 메뉴를 추천받을 수 있습니다.
+                    음식점이나 배달앱과의 제휴를 원하시는 경우 아래 제휴 문의 양식을 이용해 주세요.
+                </p>
+            </div>
+        </div>
+
+        <div class="contact-section" id="contact">
             <div class="contact-card">
                 <h2 class="contact-title">🤝 제휴 문의</h2>
                 <form class="contact-form" action="https://formspree.io/f/mgooegrz" method="POST">
@@ -334,6 +457,15 @@
                 </form>
             </div>
         </div>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="about.html">사이트 소개</a>
+                <a href="privacy.html">개인정보처리방침</a>
+                <a href="terms.html">이용약관</a>
+            </div>
+            <p class="copyright">&copy; 2025 로또 & 야식 & 동물상. All rights reserved.</p>
+        </footer>
     </div>
 
     <script>

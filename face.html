@@ -428,6 +428,102 @@
                 font-size: 1rem;
             }
         }
+
+        .info-section {
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 10px 40px rgba(168, 85, 247, 0.15);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+        }
+
+        .info-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .info-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .info-content p {
+            margin-bottom: 1rem;
+        }
+
+        .tip-list {
+            padding-left: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .tip-list li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .animal-compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .animal-box {
+            background: rgba(168, 85, 247, 0.05);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .animal-box h4 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .animal-box p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .footer {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(168, 85, 247, 0.2);
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .animal-compare {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -435,8 +531,9 @@
     <div class="container">
         <nav class="nav-menu">
             <a href="index.html" class="nav-item">🍀 로또</a>
-            <a href="food.html" class="nav-item">🍔 야식 뭐 먹지?</a>
-            <a href="face.html" class="nav-item active">🐾 동물상 테스트</a>
+            <a href="food.html" class="nav-item">🍔 야식</a>
+            <a href="face.html" class="nav-item active">🐾 동물상</a>
+            <a href="about.html" class="nav-item">소개</a>
         </nav>
 
         <div class="header">
@@ -490,6 +587,65 @@
                 <button class="restart-btn" id="restartBtn">🔄 다시 테스트하기</button>
             </div>
         </div>
+
+        <div class="info-section">
+            <h2 class="info-title">동물상 테스트 소개</h2>
+            <div class="info-content">
+                <p>
+                    동물상 테스트는 AI(인공지능) 기술을 활용하여 당신의 얼굴을 분석하고,
+                    강아지상인지 고양이상인지 알려주는 재미있는 테스트입니다.
+                    Google의 Teachable Machine과 TensorFlow.js를 기반으로 개발되었습니다.
+                </p>
+                <p>
+                    카메라로 실시간 촬영하거나 기존 사진을 업로드하여 테스트할 수 있습니다.
+                    결과는 확률 그래프와 함께 상세한 성격 분석을 제공합니다.
+                </p>
+            </div>
+
+            <h3 class="info-title" style="margin-top: 1.5rem;">강아지상 vs 고양이상</h3>
+            <div class="animal-compare">
+                <div class="animal-box">
+                    <h4>🐶 강아지상</h4>
+                    <p>밝고 긍정적인 에너지, 애교가 넘치며 사람들과 함께하는 것을 좋아하는 타입. 솔직하고 순수한 매력이 특징입니다.</p>
+                </div>
+                <div class="animal-box">
+                    <h4>🐱 고양이상</h4>
+                    <p>독립적이고 신비로운 매력, 자신만의 세계가 뚜렷하며 가까운 사람에게만 마음을 여는 타입. 세련된 분위기가 특징입니다.</p>
+                </div>
+            </div>
+
+            <h3 class="info-title" style="margin-top: 1.5rem;">이용 안내</h3>
+            <div class="info-content">
+                <ul class="tip-list">
+                    <li>본 서비스는 무료이며 회원가입이 필요 없습니다.</li>
+                    <li>카메라 사용 시 브라우저에서 카메라 접근 권한을 허용해야 합니다.</li>
+                    <li>더 정확한 결과를 위해 정면 사진을 사용하는 것이 좋습니다.</li>
+                    <li>업로드된 사진은 서버에 저장되지 않으며, 분석 후 즉시 삭제됩니다.</li>
+                    <li>결과는 오락 목적으로만 제공되며, 정확성을 보장하지 않습니다.</li>
+                </ul>
+            </div>
+
+            <h3 class="info-title" style="margin-top: 1.5rem;">기술 정보</h3>
+            <div class="info-content">
+                <p>
+                    본 서비스는 다음 기술을 사용하여 개발되었습니다:
+                </p>
+                <ul class="tip-list">
+                    <li><strong>TensorFlow.js:</strong> 브라우저에서 실행되는 머신러닝 라이브러리</li>
+                    <li><strong>Teachable Machine:</strong> Google의 AI 모델 학습 플랫폼</li>
+                    <li><strong>WebRTC:</strong> 실시간 웹캠 스트리밍 기술</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="about.html">사이트 소개</a>
+                <a href="privacy.html">개인정보처리방침</a>
+                <a href="terms.html">이용약관</a>
+            </div>
+            <p class="copyright">&copy; 2025 로또 & 야식 & 동물상. All rights reserved.</p>
+        </footer>
     </div>
 
     <script>

@@ -1,0 +1,11 @@
+# robots.txt for https://nomadplanb.github.io/product-builder/
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://nomadplanb.github.io/product-builder/sitemap.xml
+
+# Disallow crawling of system files
+Disallow: /*.json$
+Disallow: /food_images/

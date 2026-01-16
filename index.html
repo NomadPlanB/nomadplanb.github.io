@@ -418,6 +418,71 @@
                 font-size: 0.9rem;
             }
         }
+
+        .info-section {
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 10px 40px rgba(6, 182, 212, 0.15);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .info-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .info-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .info-content p {
+            margin-bottom: 1rem;
+        }
+
+        .tip-list {
+            padding-left: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .tip-list li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .footer {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(6, 182, 212, 0.2);
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
     </style>
 </head>
 
@@ -425,8 +490,9 @@
     <div class="container">
         <nav class="nav-menu">
             <a href="index.html" class="nav-item active">🍀 로또</a>
-            <a href="food.html" class="nav-item">🍔 야식 뭐 먹지?</a>
-            <a href="face.html" class="nav-item">🐾 동물상 테스트</a>
+            <a href="food.html" class="nav-item">🍔 야식</a>
+            <a href="face.html" class="nav-item">🐾 동물상</a>
+            <a href="about.html" class="nav-item">소개</a>
         </nav>
         <div class="header">
             <h1 class="title">🍀 로또 번호 추천기</h1>
@@ -444,7 +510,51 @@
                 </div>
             </div>
         </div>
-    </div>
+
+        <div class="info-section">
+            <h2 class="info-title">로또 번호 추천기 소개</h2>
+            <div class="info-content">
+                <p>
+                    저희 로또 번호 추천기는 완전한 무작위 알고리즘을 사용하여 공정하고 편향 없는 로또 번호를 생성합니다.
+                    한 번의 클릭으로 5세트의 번호를 받아볼 수 있으며, 각 세트에는 보너스 번호도 함께 제공됩니다.
+                </p>
+                <p>
+                    번호는 1~10(노란색), 11~20(청록색), 21~30(주황색), 31~40(보라색), 41~45(초록색)로
+                    색상이 구분되어 있어 한눈에 번호대를 확인할 수 있습니다.
+                </p>
+            </div>
+
+            <h3 class="info-title" style="margin-top: 1.5rem;">로또 당첨 확률 안내</h3>
+            <div class="info-content">
+                <p>로또 6/45의 당첨 확률은 다음과 같습니다:</p>
+                <ul class="tip-list">
+                    <li><strong>1등 (6개 일치):</strong> 약 1/8,145,060 (0.000012%)</li>
+                    <li><strong>2등 (5개 + 보너스):</strong> 약 1/1,357,510</li>
+                    <li><strong>3등 (5개 일치):</strong> 약 1/35,724</li>
+                    <li><strong>4등 (4개 일치):</strong> 약 1/733</li>
+                    <li><strong>5등 (3개 일치):</strong> 약 1/45</li>
+                </ul>
+            </div>
+
+            <h3 class="info-title" style="margin-top: 1.5rem;">이용 안내</h3>
+            <div class="info-content">
+                <ul class="tip-list">
+                    <li>본 서비스는 무료이며 회원가입이 필요 없습니다.</li>
+                    <li>생성된 번호는 순수한 무작위 결과로, 당첨을 보장하지 않습니다.</li>
+                    <li>로또 구매는 만 19세 이상만 가능합니다.</li>
+                    <li>과도한 복권 구매는 도박 중독으로 이어질 수 있으니 적정선을 지켜주세요.</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="about.html">사이트 소개</a>
+                <a href="privacy.html">개인정보처리방침</a>
+                <a href="terms.html">이용약관</a>
+            </div>
+            <p class="copyright">&copy; 2025 로또 & 야식 & 동물상. All rights reserved.</p>
+        </footer>
     </div>
 
     <script>

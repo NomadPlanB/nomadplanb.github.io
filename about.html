@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="로또 & 야식 & 동물상 - 일상의 작은 결정을 도와주는 재미있는 서비스">
+    <meta name="google-adsense-account" content="ca-pub-4736795972956105">
+    <title>사이트 소개 | 로또 & 야식 & 동물상</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4736795972956105"
+        crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #06b6d4;
+            --secondary: #14b8a6;
+            --dark-bg: #f0fdfa;
+            --card-bg: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --gradient: linear-gradient(135deg, #06b6d4 0%, #14b8a6 50%, #10b981 100%);
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+
+        body.dark-mode {
+            --dark-bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            padding: 0.8rem 1.5rem;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--text-secondary);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .nav-item:hover {
+            background: rgba(6, 182, 212, 0.2);
+        }
+
+        .nav-item.active {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 5px 15px rgba(6, 182, 212, 0.3);
+            border: none;
+        }
+
+        .main-card {
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(6, 182, 212, 0.15);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .intro-text {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 0 1rem;
+        }
+
+        .services {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: rgba(6, 182, 212, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(6, 182, 212, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.1);
+        }
+
+        .service-card.lotto {
+            border-left: 4px solid #06b6d4;
+        }
+
+        .service-card.food {
+            border-left: 4px solid #f97316;
+        }
+
+        .service-card.animal {
+            border-left: 4px solid #a855f7;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .service-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .service-features {
+            margin-top: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .service-features li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .service-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .service-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(6, 182, 212, 0.3);
+        }
+
+        .features-section {
+            margin-top: 2rem;
+        }
+
+        .features-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(6, 182, 212, 0.05);
+            border-radius: 15px;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-name {
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-section {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(6, 182, 212, 0.05);
+            border-radius: 20px;
+            margin-top: 2rem;
+        }
+
+        .contact-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-text {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-link {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(6, 182, 212, 0.2);
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+            .main-card {
+                padding: 1.5rem;
+            }
+            .nav-item {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+            .service-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-item">🍀 로또</a>
+            <a href="food.html" class="nav-item">🍔 야식</a>
+            <a href="face.html" class="nav-item">🐾 동물상</a>
+            <a href="about.html" class="nav-item active">소개</a>
+        </nav>
+
+        <div class="main-card">
+            <h1 class="page-title">로또 & 야식 & 동물상</h1>
+            <p class="page-subtitle">일상의 작은 결정을 도와주는 재미있는 서비스</p>
+
+            <p class="intro-text">
+                결정 장애로 고민하시나요? 저희 서비스가 도와드립니다!<br>
+                로또 번호 선택, 야식 메뉴 결정, 그리고 재미있는 동물상 테스트까지.<br>
+                모든 서비스는 <strong>무료</strong>로 제공되며, <strong>회원가입 없이</strong> 바로 이용할 수 있습니다.
+            </p>
+
+            <div class="services">
+                <div class="service-card lotto">
+                    <div class="service-icon">🍀</div>
+                    <h2 class="service-title">로또 번호 추천기</h2>
+                    <p class="service-description">
+                        매주 로또 번호 선택에 고민이신가요? 저희 로또 번호 추천기가 행운의 번호를 생성해 드립니다.
+                        완전한 무작위 알고리즘을 사용하여 공정하고 편향 없는 번호를 제공합니다.
+                    </p>
+                    <ul class="service-features">
+                        <li>한 번에 5세트의 번호 생성</li>
+                        <li>각 세트별 보너스 번호 포함</li>
+                        <li>번호대별 색상 구분으로 쉬운 확인</li>
+                        <li>다크모드 지원으로 눈의 피로 감소</li>
+                    </ul>
+                    <a href="index.html" class="service-link">번호 생성하러 가기</a>
+                </div>
+
+                <div class="service-card food">
+                    <div class="service-icon">🍔</div>
+                    <h2 class="service-title">야식 메뉴 추천기</h2>
+                    <p class="service-description">
+                        "오늘 뭐 먹지?" 매일 반복되는 고민을 해결해 드립니다.
+                        다양한 한식, 중식, 일식, 양식 메뉴 중에서 랜덤으로 추천해 드리며,
+                        맛있는 음식 이미지와 함께 결정을 도와드립니다.
+                    </p>
+                    <ul class="service-features">
+                        <li>20가지 이상의 다양한 메뉴</li>
+                        <li>실제 음식 이미지 제공</li>
+                        <li>재미있는 룰렛 애니메이션</li>
+                        <li>제휴 문의 가능 (음식점, 배달앱 등)</li>
+                    </ul>
+                    <a href="food.html" class="service-link">메뉴 추천받으러 가기</a>
+                </div>
+
+                <div class="service-card animal">
+                    <div class="service-icon">🐾</div>
+                    <h2 class="service-title">동물상 테스트</h2>
+                    <p class="service-description">
+                        AI 기술을 활용한 동물상 테스트입니다. 카메라로 얼굴을 촬영하거나 사진을 업로드하면,
+                        인공지능이 당신의 얼굴을 분석하여 강아지상인지 고양이상인지 알려드립니다.
+                        친구들과 함께 테스트해보세요!
+                    </p>
+                    <ul class="service-features">
+                        <li>TensorFlow.js 기반 AI 분석</li>
+                        <li>실시간 웹캠 촬영 지원</li>
+                        <li>사진 업로드 분석 가능</li>
+                        <li>상세한 확률 그래프 제공</li>
+                        <li>재미있는 성격 분석 결과</li>
+                    </ul>
+                    <a href="face.html" class="service-link">테스트하러 가기</a>
+                </div>
+            </div>
+
+            <div class="features-section">
+                <h2 class="features-title">서비스 특징</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">💰</div>
+                        <div class="feature-name">완전 무료</div>
+                        <div class="feature-desc">모든 서비스를 무료로 이용할 수 있습니다</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔐</div>
+                        <div class="feature-name">회원가입 불필요</div>
+                        <div class="feature-desc">별도의 회원가입 없이 바로 이용 가능합니다</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📱</div>
+                        <div class="feature-name">모바일 최적화</div>
+                        <div class="feature-desc">스마트폰에서도 편리하게 이용할 수 있습니다</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🌙</div>
+                        <div class="feature-name">다크모드</div>
+                        <div class="feature-desc">눈의 피로를 줄여주는 다크모드를 지원합니다</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h3 class="contact-title">제휴 및 광고 문의</h3>
+                <p class="contact-text">
+                    비즈니스 제휴, 광고 게재, 기타 문의사항이 있으시면<br>
+                    야식 페이지의 제휴 문의 양식을 통해 연락해 주세요.
+                </p>
+                <a href="food.html#contact" class="contact-link">문의하기</a>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="about.html">사이트 소개</a>
+                <a href="privacy.html">개인정보처리방침</a>
+                <a href="terms.html">이용약관</a>
+            </div>
+            <p class="copyright">&copy; 2025 로또 & 야식 & 동물상. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+
+</html>
